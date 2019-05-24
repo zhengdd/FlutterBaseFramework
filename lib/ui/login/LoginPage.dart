@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_framework/dao/UserDao.dart';
+import 'package:flutter_base_framework/router/NavigatorTool.dart';
+import 'package:flutter_base_framework/router/Routes.dart';
 import 'package:flutter_base_framework/utils/LogUtil.dart';
 
 void main() => runApp(LoginPage());
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    NavigatorTool.addPage("LoginPage", context);
+    return MaterialApp(
+      title: "LoginPage",
+      routes: Routes.getRoutes(),
+      home: LoginPageFul(),
+    );
+  }
+}
+
+class LoginPageFul extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -12,7 +27,7 @@ class LoginPage extends StatefulWidget {
   }
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPageFul> {
   String name = "";
   String pwd = "";
 
@@ -24,6 +39,25 @@ class LoginPageState extends State<LoginPage> {
         LogUtil.d("LoginPage", vm.msg);
       }
     });
+  }
+
+  _toHome() {
+//    NavigatorTool.trunHome1(context);
+//    NavigatorTool.trunHome2(context, (val) {
+//      LogUtil.d("Home页面返回消息", val.toString());
+//      switch (val.toString()) {
+//        case "1":
+//          break;
+//        case "2":
+//          _toHome();
+//          break;
+//      }
+//    });
+//    NavigatorTool.trunHome3(context);
+//    NavigatorTool.trunHome4(context, (val) {
+//      LogUtil.d("Home页面返回消息", val.toString());
+//    });
+    NavigatorTool.trunHome5("LoginPage", "传值name", "password");
   }
 
   @override
@@ -78,7 +112,7 @@ class LoginPageState extends State<LoginPage> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  _login();
+                  _toHome();
                 },
               ),
             ),
